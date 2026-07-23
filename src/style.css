@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,11 @@
 }
 
 body {
-  display: flex;
+  background-color: rgb(61, 165, 255);
+  font-family: "Playwrite NZ Basic", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
 }
 
 header {
@@ -22,6 +28,8 @@ header {
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 90px;
 }
 
 .nav__list {
@@ -40,4 +48,32 @@ header {
   font-size: 1.8rem;
   font-weight: 300;
   color: #fff;
+}
+
+.home-text {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(134, 199, 255);
+  height: 200px;
+  width: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 8px 5px rgb(0 0 0 / 10%) ;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+}
+
+.btn {
+  background-color:rgb(1, 136, 255);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
 }
