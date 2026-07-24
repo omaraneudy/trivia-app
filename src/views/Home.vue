@@ -8,7 +8,7 @@ import HeaderComponent from '../components/HeaderComponent.vue';
         <div class="home-text">
             <h2 class="home-title">Home page</h2>
             <p>Preparate para responder a estas trivias</p>
-            <router-link class="btn" to="/trivias">Empezar trivia</router-link>
+            <router-link class="btn" to="/iniciartrivia">Empezar trivia</router-link>
         </div>
     </div>
 </template>

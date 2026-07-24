@@ -10,7 +10,7 @@
                     <router-link class="nav__link" to="/">Home</router-link>
                 </li>
                 <li class="nav__item">
-                    <router-link class="nav__link" to="/trivias">Trivias</router-link>
+                    <router-link class="nav__link" to="/creartrivia">Trivias</router-link>
                 </li>
             </ul>
         </nav>

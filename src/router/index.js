@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import Trivias from "../views/Trivias.vue";
+import Trivia from "../views/Trivia.vue";
+import IniciarTrivia from "../views/IniciarTrivia.vue";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -11,9 +12,14 @@ const router = createRouter({
             component: Home
         },
         {
-            path: "/trivias",
-            name: "trivias",
-            component: Trivias
+            path: "/trivia",
+            name: "trivia",
+            component: Trivia
+        },
+        {
+            path: "/iniciartrivia",
+            name: "iniciartrivia",
+            component: IniciarTrivia
         }
     ]
 })
