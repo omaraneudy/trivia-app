@@ -2,8 +2,15 @@
 import { onMounted } from 'vue';
 import { ref } from 'vue';
 import { useTriviaStore } from '../stores/trivia';
+import { useRouter } from 'vue-router' 
+
+const router = new useRouter();
 
 const triviaStore = useTriviaStore();
+
+const handleSubmit = () => {
+    router.push('trivia');
+}
 
 onMounted(async () => {
     await triviaStore.obtenerCategorias();
@@ -17,8 +24,10 @@ onMounted(async () => {
         <input type="number" class="campo" value="10">
 
         <label for="categoria">Elige la categoría</label>
-        <select  id="categoria" class="campo">
-            <option v-for="categoria in triviaStore.categorias" :key="categoria.id" :value="categoria.id">{{ categoria.name }}</option>
+        <select id="categoria" class="campo">
+            <option value="any">Cualquier categoría</option>
+            <option v-for="categoria in triviaStore.categorias" :key="categoria.id" :value="categoria.id">{{
+                categoria.name }}</option>
         </select>
 
         <label for="dificultad">Elige la dificultad</label>
@@ -35,7 +44,6 @@ onMounted(async () => {
             <option value="multiple">Elección multiple</option>
             <option value="boolean">Verdadero o Falso</option>
         </select>
-
         <button class="btn btn-creacion">Crear Trivia</button>
     </form>
 </template>
