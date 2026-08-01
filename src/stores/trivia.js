@@ -6,6 +6,7 @@ export const useTriviaStore = defineStore("trivias", () => {
 
     const trivias = ref([]);
     const categorias = ref([]);
+    const parametrosTrivia = ref("");
 
     // trivias.value = [
     //     {
@@ -40,38 +41,70 @@ export const useTriviaStore = defineStore("trivias", () => {
         }
     }
 
-    const obtenerTrivia = () => {
-        trivias.value = [
-            {
-                type: "boolean",
-                difficulty: "medium",
-                category: "Sports",
-                question: "During Wimbledon, spectators in the grounds can buy the tennis balls that have been used in matches.",
-                correct_answer: "True",
-                incorrect_answers: [
-                    "False"
-                ]
-            },
-            {
-                "type": "multiple",
-                "difficulty": "medium",
-                "category": "General Knowledge",
-                "question": "Linus Pauling, one of the only winners of multiple Nobel Prizes, earned his Nobel Prizes in Chemistry and what?",
-                "correct_answer": "Peace",
-                "incorrect_answers": [
-                    "Physics",
-                    "Economics",
-                    "Physiology/Medicine"
-                ]
-            }
-        ];
+    const configurarTrivia = (numeroPreguntas, categoria, dificultad, tipoPregunta) => {
+        parametrosTrivia.value = "";
+        parametrosTrivia.value += "amount=" + numeroPreguntas;
+        parametrosTrivia.value += categoria === "any" ? "" : "&category=" + categoria;
+        parametrosTrivia.value += dificultad === "any" ? "" : "&difficulty=" + dificultad;
+        parametrosTrivia.value += tipoPregunta === "any" ? "" : "&type=" + tipoPregunta;
 
-        trivias.value.forEach(trivia => {
-            trivia.respuestas = shuffle(
-                trivia.incorrect_answers,
-                trivia.correct_answer
-            );
-        });
+    }
+
+    const obtenerTrivia = async () => {
+
+        try {
+            cargando.value = true;
+
+            const response = await fetch(API_URL + "api.php?" + parametrosTrivia.value);
+            const data = await response.json();
+
+            trivias.value = data.results;
+
+            trivias.value.forEach(trivia => {
+                trivia.respuestas = shuffle(
+                    trivia.incorrect_answers,
+                    trivia.correct_answer
+                );
+            });
+
+            cargando.value = false;
+            error.value = false;
+        }
+        catch (e) {
+
+        }
+
+        // trivias.value = [
+        //     {
+        //         type: "boolean",
+        //         difficulty: "medium",
+        //         category: "Sports",
+        //         question: "During Wimbledon, spectators in the grounds can buy the tennis balls that have been used in matches.",
+        //         correct_answer: "True",
+        //         incorrect_answers: [
+        //             "False"
+        //         ]
+        //     },
+        //     {
+        //         "type": "multiple",
+        //         "difficulty": "medium",
+        //         "category": "General Knowledge",
+        //         "question": "Linus Pauling, one of the only winners of multiple Nobel Prizes, earned his Nobel Prizes in Chemistry and what?",
+        //         "correct_answer": "Peace",
+        //         "incorrect_answers": [
+        //             "Physics",
+        //             "Economics",
+        //             "Physiology/Medicine"
+        //         ]
+        //     }
+        // ];
+
+        // trivias.value.forEach(trivia => {
+        //     trivia.respuestas = shuffle(
+        //         trivia.incorrect_answers,
+        //         trivia.correct_answer
+        //     );
+        // });
 
     }
 
@@ -101,7 +134,8 @@ export const useTriviaStore = defineStore("trivias", () => {
         categorias,
         obtenerCategorias,
         trivias,
-        obtenerTrivia
+        obtenerTrivia,
+        configurarTrivia
     }
 
 
