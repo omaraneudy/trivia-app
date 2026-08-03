@@ -14,7 +14,7 @@ body {
   font-style: normal;
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
@@ -216,4 +216,14 @@ input {
 
 .titulo-trivia {
   margin-bottom: 15px;
+}
+
+.respuesta-correcta {
+  background-color: rgb(3, 177, 17);
+  color: #fff;
+}
+
+.respuesta-incorrecta {
+  background-color: rgb(177, 3, 3);
+  color: #fff;
 }
